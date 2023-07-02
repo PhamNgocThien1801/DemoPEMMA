@@ -128,4 +128,14 @@ const styles = StyleSheet.create({
   pressed: {
     opacity: 0.25,
   },
+  image: {
+    height: 200,
+    width: 200,
+    borderRadius: 100,
+  },
+  icon: {
+    position: "absolute",
+    top: 12,
+    right: 12,
+  },
 });
