@@ -16,7 +16,7 @@ function DetailScreen() {
 
   const checkFavoriteStatus = async () => {
     try {
-      const favoritesString = await AsyncStorage.getItem("favoritesOrchid");
+      const favoritesString = await AsyncStorage.getItem("favoritesList");
       const favorites = JSON.parse(favoritesString) || [];
       const isFavorite = favorites.some((f) => f.name === orchid.name);
       setIsFavorite(isFavorite);
@@ -45,14 +45,14 @@ function DetailScreen() {
 
   const removeFromFavorites = async () => {
     try {
-      const favoritesString = await AsyncStorage.getItem("favoritesOrchid");
+      const favoritesString = await AsyncStorage.getItem("favoritesList");
       const favorites = JSON.parse(favoritesString) || [];
 
       const updatedFavorites = favorites.filter((f) => f.name !== orchid.name);
       setIsFavorite(false);
 
       await AsyncStorage.setItem(
-        "favoritesOrchid",
+        "favoritesList",
         JSON.stringify(updatedFavorites)
       );
     } catch (error) {
@@ -61,11 +61,15 @@ function DetailScreen() {
   };
 
   const addToFavorites = async () => {
+    const checkStoreFavorites = await AsyncStorage.getItem("favoritesList");
+    if (!checkStoreFavorites) {
+      await AsyncStorage.setItem("favoritesList", JSON.stringify([]));
+    }
     if (isFavorite) {
       confirmRemoveFromFavorites();
     } else {
       try {
-        const favoritesString = await AsyncStorage.getItem("favoritesOrchid");
+        const favoritesString = await AsyncStorage.getItem("favoritesList");
         const favorites = JSON.parse(favoritesString) || [];
 
         const existingOrchidIndex = favorites.findIndex(
@@ -79,15 +83,29 @@ function DetailScreen() {
           setIsFavorite(true);
         }
 
-        await AsyncStorage.setItem(
-          "favoritesOrchid",
-          JSON.stringify(favorites)
-        );
+        await AsyncStorage.setItem("favoritesList", JSON.stringify(favorites));
       } catch (error) {
         console.log("Error adding/removing orchid from favorites:", error);
       }
     }
   };
+  // const flower = {
+  //   name: "Taichung beauty",
+  //   weight: 120,
+  //   rating: "5.0",
+  //   price: 39,
+  //   isTopOfTheWeek: true,
+  //   image:
+  //     "https://i.pinimg.com/originals/25/13/3d/25133df91301e29bcd36eec3949009ff.jpg",
+  //   color: "pink",
+  //   bonus: "a pot",
+  //   origin: "Taiwan",
+  // };
+
+  // const handleCreateAsyncStorage = async () => {
+  //   await AsyncStorage.setItem("favourites", JSON.stringify([flower]));
+  //   const storeData = JSON.parse(await AsyncStorage.getItem("favourites"));
+  // };
   return (
     <View style={styles.container}>
       <View style={styles.icon}>

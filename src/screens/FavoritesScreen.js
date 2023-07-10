@@ -14,9 +14,10 @@ function FavoritesScreen() {
 
   const loadFavorites = async () => {
     try {
-      const favoritesString = await AsyncStorage.getItem("favoritesOrchid");
+      const favoritesString = await AsyncStorage.getItem("favoritesList");
       const favoritesData = JSON.parse(favoritesString) || [];
       setFavorites(favoritesData);
+      loadFavorites();
     } catch (error) {
       console.log("Error loading favorites:", error);
     }
