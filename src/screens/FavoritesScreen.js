@@ -22,10 +22,48 @@ function FavoritesScreen() {
       console.log("Error loading favorites:", error);
     }
   };
+
+  const clearFavorites = () => {
+    Alert.alert(
+      "Clear Favorites",
+      "Are you sure you want to clear all favorites?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+        {
+          text: "Clear",
+          style: "destructive",
+          onPress: async () => {
+            try {
+              await AsyncStorage.removeItem("favoritesList");
+              setFavorites([]);
+            } catch (error) {
+              console.log("Error clearing favorites:", error);
+            }
+          },
+        },
+      ]
+    );
+  };
+
   return (
     <View>
-      <OrchidList data={favorites} />
+      {favorites.length > 0 ? (
+        <OrchidList data={favorites} />
+      ) : (
+        <Text style={styles.text}> No Favorites Orchid here </Text>
+      )}
     </View>
   );
 }
 export default FavoritesScreen;
+
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 24,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+});

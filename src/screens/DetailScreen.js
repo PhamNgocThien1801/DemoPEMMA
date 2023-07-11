@@ -89,23 +89,6 @@ function DetailScreen() {
       }
     }
   };
-  // const flower = {
-  //   name: "Taichung beauty",
-  //   weight: 120,
-  //   rating: "5.0",
-  //   price: 39,
-  //   isTopOfTheWeek: true,
-  //   image:
-  //     "https://i.pinimg.com/originals/25/13/3d/25133df91301e29bcd36eec3949009ff.jpg",
-  //   color: "pink",
-  //   bonus: "a pot",
-  //   origin: "Taiwan",
-  // };
-
-  // const handleCreateAsyncStorage = async () => {
-  //   await AsyncStorage.setItem("favourites", JSON.stringify([flower]));
-  //   const storeData = JSON.parse(await AsyncStorage.getItem("favourites"));
-  // };
   return (
     <View style={styles.container}>
       <View style={styles.icon}>
