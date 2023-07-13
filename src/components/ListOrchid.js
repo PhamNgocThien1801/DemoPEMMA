@@ -97,11 +97,9 @@ const OrchidList = ({ data }) => {
           <View style={styles.inForContainer}>
             <View>
               <Text style={styles.text}>
-                <Ionicons name="star" color="yellow" size={16} />
+                <Ionicons name="star-outline" color="black" size={18} />
                 {item.rating}
               </Text>
-            </View>
-            <View>
               <Text style={styles.text}> ${item.price}</Text>
             </View>
             <View>
@@ -158,7 +156,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   text: {
-    fontSize: 16,
+    fontSize: 18,
+    padding: 2,
   },
   image: {
     height: 100,

@@ -89,6 +89,7 @@ function DetailScreen() {
       }
     }
   };
+
   return (
     <View style={styles.container}>
       <View style={styles.icon}>
@@ -104,12 +105,12 @@ function DetailScreen() {
         </Pressable>
       </View>
       <Image source={{ uri: orchid.image }} style={styles.image} />
-      <Text>{orchid.name}</Text>
-      <Text>Weight: {orchid.weight}</Text>
-      <Text>Rating: {orchid.rating}</Text>
-      <Text>Price: {orchid.price}</Text>
-      <Text>Bonus: {orchid.bonus}</Text>
-      <Text>Origin: {orchid.origin}</Text>
+      <Text style={styles.textTitle}>{orchid.name}</Text>
+      <Text style={styles.text}>Weight: {orchid.weight}</Text>
+      <Text style={styles.text}>Rating: {orchid.rating}</Text>
+      <Text style={styles.text}>Price: {orchid.price}$</Text>
+      <Text style={styles.text}>Bonus: {orchid.bonus}</Text>
+      <Text style={styles.text}>Origin: {orchid.origin}</Text>
     </View>
   );
 }
@@ -138,5 +139,12 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 12,
     right: 12,
+  },
+  text: {
+    fontSize: 24,
+  },
+  textTitle: {
+    fontWeight: "bold",
+    fontSize: 24,
   },
 });
